@@ -7,7 +7,7 @@ C++, ImGui. </strong></h3>
 
 <p>Dear friends.</p>
 
-<p>You are probably already aware of Chotra Engine, our real-time renderer. But the irresistible desire to learn the algorithms of ray tracing isn't gave us peace.</p>
+<p>You are probably already aware of <a href="https://github.com/Uzunig/ChotraEngine" target="_blank">Chotra Engine</a>, our real-time renderer. But the irresistible desire to learn the algorithms of ray tracing isn't gave us peace.</p>
 
 <p>So, in parallel with Chotra Engine, we are launching our new project Chotra_RT, in which we'll be trying to learn the basics (and I hope not only the basics) of ray tracing.</p> 
 <p>Here I'll be using the C++ and Vulkan APIs, which are also worth a lot of time and attention.</p>
