@@ -14,7 +14,7 @@ C++, ImGui. </strong></h3>
 
 <p>At the same time we would like to meet professionals in this workspace and hope to receive feedbacks and guidances.</p>
 
-<p>Regards, <br>Igor.</p>
+<p>Regards <br>Igor</p>
 <hr>
 <br>
 <h3><strong>My contacts:</strong></h3>
