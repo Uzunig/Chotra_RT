@@ -1,13 +1,12 @@
-#include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
 
+#include "application.h"
+
 static bool GLFW_initialized = false;
 
 int main() {
-
-    glm::vec3 vector;
 
     if (!GLFW_initialized) {
         if (!glfwInit()) {
@@ -15,7 +14,10 @@ int main() {
             return -1;
         }
     }
-    int x;
-    std::cin >> x;
-    return 0;
+
+    std::unique_ptr<Chotra_RT::Application> application = std::make_unique<Chotra_RT::Application>();
+    int return_code = application->Start();
+
+    std::cin.get();
+    return return_code;
 }

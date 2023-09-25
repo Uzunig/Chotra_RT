@@ -6,6 +6,16 @@ project(Chotra_RT)
 
 add_executable(Chotra_RT 
 		src/main.cpp
+
+		src/application.h
+		src/application.cpp
+
+		src/image.h
+		src/image.cpp
+		
+		src/image_file.h
+		src/image_file.cpp	
+
 )
 
 include_directories(src)
