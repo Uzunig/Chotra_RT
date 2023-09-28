@@ -9,13 +9,12 @@ namespace Chotra_RT {
     {
     public:
         ImageFile(std::string filename);
-
+        void Append(const char* text);
     private:
         std::string filename_;
         std::ofstream outf_;
 
         int CreateImageFile();
-        void Append(const char* text);
     };
 } // namespace Chotra_RT
 #endif

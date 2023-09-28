@@ -18,16 +18,19 @@ namespace Chotra_RT {
         Image image(256, 256); // width, height
         ImageFile image_file("image.ppm");
 
-        std::cout << "P3\n" << image.GetWidth() << ' ' << image.GetHeight() << "\n255\n";
+        std::string s = "P3\n" + std::to_string(image.GetWidth()) + ' ' + std::to_string(image.GetHeight()) + "\n255\n";
+        image_file.Append(s.c_str());
 
         for (int i = 0; i < image.GetHeight(); ++i) {
             for (int j = 0; j < image.GetWidth(); ++j) {
-                std::cout << i << " " << j << " " << 0 << "  ";
+                s = std::to_string(i) + " " + std::to_string(j) + " " + std::to_string(0) + "  ";
+                image_file.Append(s.c_str());
             }
-            std::cout << std::endl;
+            s = "\n";
+            image_file.Append(s.c_str());
         }
-
-        return 0;
+        std::cout << "Done\n"; 
+        return 0; 
     }
 
 } // namespace Chotra_RT

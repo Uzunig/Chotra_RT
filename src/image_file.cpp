@@ -26,7 +26,7 @@ namespace Chotra_RT {
 
     void ImageFile::Append(const char* text) {
 
-        outf_.open("SomeText.txt", std::ios::app);
+        outf_.open(filename_, std::ios::app);
         outf_ << text;
         outf_.close();
     }

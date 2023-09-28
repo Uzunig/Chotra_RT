@@ -12,7 +12,7 @@ C++, ImGui. </strong></h3>
 <p>So, in parallel with Chotra Engine, we are launching our new project Chotra_RT, in which we'll be trying to learn the basics (and I hope not only the basics) of ray tracing.</p> 
 <p>Here I'll be using the C++ and Vulkan APIs, which are also worth a lot of time and attention.</p>
 
-<p>At the same time we would like to meet professionals in this workspace and hope to receive feedbacks and guidances.</p>
+<p>We would like to meet professionals in this workspace and hope to receive feedbacks and guidances.</p>
 
 <p>Regards <br>Igor</p>
 <hr>
