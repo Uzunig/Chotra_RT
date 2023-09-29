@@ -22,6 +22,7 @@ namespace Chotra_RT {
         image_file.Append(s.c_str());
 
         for (int i = 0; i < image.GetHeight(); ++i) {
+            std::clog << "\rScanlines remaining: " << (image.GetHeight() - i) << ' ' << std::flush;
             for (int j = 0; j < image.GetWidth(); ++j) {
                 s = std::to_string(i) + " " + std::to_string(j) + " " + std::to_string(0) + "  ";
                 image_file.Append(s.c_str());
@@ -29,7 +30,7 @@ namespace Chotra_RT {
             s = "\n";
             image_file.Append(s.c_str());
         }
-        std::cout << "Done\n"; 
+        std::clog << "\nDone\n"; 
         return 0; 
     }
 

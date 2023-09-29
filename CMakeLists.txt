@@ -14,7 +14,10 @@ add_executable(Chotra_RT
 		src/image.cpp
 		
 		src/image_file.h
-		src/image_file.cpp	
+		src/image_file.cpp
+
+		src/ray.h
+		src/ray.cpp		
 
 )
 
