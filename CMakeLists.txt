@@ -17,8 +17,16 @@ add_executable(Chotra_RT
 		src/image_file.cpp
 
 		src/ray.h
-		src/ray.cpp		
+		src/ray.cpp	
 
+		src/camera.h
+		src/camera.cpp
+
+		src/renderer.h
+		src/renderer.cpp	
+
+		src/resource_manager.h
+		src/resource_manager.cpp
 )
 
 include_directories(src)

@@ -21,7 +21,7 @@ namespace Chotra_RT {
             return 1;
         }
         outf_.close();
-
+        return 0;
     }
 
     void ImageFile::Append(const char* text) {

@@ -15,9 +15,10 @@ int main() {
         }
     }
 
-    std::unique_ptr<Chotra_RT::Application> application = std::make_unique<Chotra_RT::Application>();
-    int return_code = application->Start();
+    Chotra_RT::ApplicationSpecification applicationSpecification;
 
-    std::cin.get();
-    return return_code;
+    std::unique_ptr<Chotra_RT::Application> application = std::make_unique<Chotra_RT::Application>(applicationSpecification);
+    application->Run();
+
+    return 0;
 }

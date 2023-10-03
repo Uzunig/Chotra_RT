@@ -1,16 +1,22 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <memory>
 #include <string>
-#include <iostream>
+#include <GLFW/glfw3.h>
 
 namespace Chotra_RT {
+
+    class Renderer;
+
+    struct ApplicationSpecification {
+        std::string name = "Chotra_RT";
+        std::string workingDirectory;
+    };
 
     class Application {
 
     public:
-        Application();
+        Application(const ApplicationSpecification applicationSpecification);
         virtual ~Application();
 
         Application(const Application&) = delete;
@@ -19,17 +25,18 @@ namespace Chotra_RT {
         Application& operator=(const Application&) = delete;
         Application& operator=(Application&&) = delete;
 
-        virtual int Start();
-        //virtual void OnUpdate(float deltaTime);
+        void Run();
+        void OnUpdate();
+        float GetTime();
 
 
     private:
+        ApplicationSpecification applicationSpecification_;
 
-        float currentTime = 0.0f;
-        float deltaTime = 0.0f;
-        float lastFrame = 0.0f;
+        bool running_ = true;
+        float lastTime_ = 0.0f;
 
-
+        Renderer renderer_;
     };
 } // namespace Chotra_RT
 

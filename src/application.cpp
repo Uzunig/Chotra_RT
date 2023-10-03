@@ -1,11 +1,15 @@
 #include "application.h"
 
-#include "image.h"
-#include "image_file.h"
+#include <chrono>
+
+#include "renderer.h"
+#include "resource_manager.h"
+
 
 namespace Chotra_RT {
 
-    Application::Application() {
+    Application::Application(ApplicationSpecification applicationSpecification)
+        : applicationSpecification_(applicationSpecification) {
 
     }
 
@@ -13,25 +17,28 @@ namespace Chotra_RT {
 
     }
 
-    int Application::Start() {
+    void Application::Run() {
 
-        Image image(256, 256); // width, height
-        ImageFile image_file("image.ppm");
+        ResourceManager::AddCamera();
+        renderer_.Render();
 
-        std::string s = "P3\n" + std::to_string(image.GetWidth()) + ' ' + std::to_string(image.GetHeight()) + "\n255\n";
-        image_file.Append(s.c_str());
 
-        for (int i = 0; i < image.GetHeight(); ++i) {
-            std::clog << "\rScanlines remaining: " << (image.GetHeight() - i) << ' ' << std::flush;
-            for (int j = 0; j < image.GetWidth(); ++j) {
-                s = std::to_string(i) + " " + std::to_string(j) + " " + std::to_string(0) + "  ";
-                image_file.Append(s.c_str());
-            }
-            s = "\n";
-            image_file.Append(s.c_str());
+        while (running_) {
+            float currentTime = GetTime();
+            float deltaTime = currentTime - lastTime_;
+            lastTime_ = currentTime;
+
+            //OnUpdate();
         }
-        std::clog << "\nDone\n"; 
-        return 0; 
+    }
+
+    void Application::OnUpdate() {
+
+        running_ = false;
+    }
+
+    float Application::GetTime() {
+        return (float)glfwGetTime();
     }
 
 } // namespace Chotra_RT
