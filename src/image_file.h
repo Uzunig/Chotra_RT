@@ -3,18 +3,14 @@
 
 #include <fstream>
 
+#include "file.h"
+
 namespace Chotra_RT {
 
-    class ImageFile
-    {
-    public:
-        ImageFile(std::string filename);
-        void Append(const char* text);
+    class FilePPM : public File {
     private:
-        std::string filename_;
-        std::ofstream outf_;
-
-        int CreateImageFile();
+       // void Append(const char* text);
+   
     };
 } // namespace Chotra_RT
 #endif

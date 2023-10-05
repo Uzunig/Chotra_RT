@@ -13,7 +13,7 @@ namespace Chotra_RT {
         static size_t AddCamera();
 
     private:
-        static std::vector<std::shared_ptr<Camera>()> cameras_;
+        static std::vector<std::shared_ptr<Camera>> cameras_;
 
     };
 } // namespace Chotra_RT

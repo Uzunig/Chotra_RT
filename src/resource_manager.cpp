@@ -4,11 +4,11 @@
 
 namespace Chotra_RT {
 
-    std::vector<std::shared_ptr<Camera>()> ResourceManager::cameras_;
+    std::vector<std::shared_ptr<Camera>> ResourceManager::cameras_;
 
     size_t ResourceManager::AddCamera() {
 
-        cameras_.push_back(std::make_shared<Camera>);
+        cameras_.push_back(std::make_shared<Camera>());
         return cameras_.size() - 1;
         
     }

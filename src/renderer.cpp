@@ -12,9 +12,9 @@ namespace Chotra_RT {
     }
 
     void Renderer::Render() {
-
-        Image image(256, 256); // width, height
-        ImageFile image_file("image.ppm");
+/*
+        ImagePPM image(256, 256); // width, height
+        FilePPM image_file("image.ppm");
 
         std::string s = "P3\n" + std::to_string(image.GetWidth()) + ' ' + std::to_string(image.GetHeight()) + "\n255\n";
         image_file.Append(s.c_str());
@@ -28,7 +28,7 @@ namespace Chotra_RT {
             s = "\n";
             image_file.Append(s.c_str());
         }
-        std::clog << "\nDone\n";
+        std::clog << "\nDone\n";*/
     }
 
 } // namespace Chotra_RT

@@ -4,9 +4,10 @@
 #include <string>
 #include <GLFW/glfw3.h>
 
+#include "renderer.h"
+
 namespace Chotra_RT {
 
-    class Renderer;
 
     struct ApplicationSpecification {
         std::string name = "Chotra_RT";

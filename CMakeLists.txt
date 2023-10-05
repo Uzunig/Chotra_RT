@@ -27,6 +27,9 @@ add_executable(Chotra_RT
 
 		src/resource_manager.h
 		src/resource_manager.cpp
+
+		src/file.h
+		src/file.cpp
 )
 
 include_directories(src)

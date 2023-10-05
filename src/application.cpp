@@ -2,7 +2,6 @@
 
 #include <chrono>
 
-#include "renderer.h"
 #include "resource_manager.h"
 
 
