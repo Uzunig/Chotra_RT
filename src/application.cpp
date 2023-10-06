@@ -3,6 +3,7 @@
 #include <chrono>
 
 #include "resource_manager.h"
+#include "file.h"
 
 
 namespace Chotra_RT {
@@ -20,8 +21,7 @@ namespace Chotra_RT {
 
         ResourceManager::AddCamera();
         renderer_.Render();
-
-
+       
         while (running_) {
             float currentTime = GetTime();
             float deltaTime = currentTime - lastTime_;

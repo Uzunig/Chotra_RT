@@ -9,13 +9,18 @@ namespace Chotra_RT {
     class File {
     public:
         File() = delete;
-        File(std::string filename);
+        File(const char* filename);
+
+        File(const File& file);
+        File& operator=(const File& file) = delete;
+        ~File();
 
     private:
-        std::string filename_;
+        const char* filename_;
         std::ofstream outf_;
 
         int CreateFile();
+        int DeleteFile();
     };
 
 } //namespace Chatra_RT
