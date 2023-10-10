@@ -3,7 +3,8 @@
 #include <chrono>
 
 #include "resource_manager.h"
-#include "file.h"
+#include "image_file.h"
+#include "image.h"
 
 
 namespace Chotra_RT {
@@ -20,7 +21,12 @@ namespace Chotra_RT {
     void Application::Run() {
 
         ResourceManager::AddCamera();
-        renderer_.Render();
+
+        ImagePPM image(1024, 1024);
+        renderer_.Render(image);
+        const char* filename = "image.ppm";
+        FilePPM file(filename);
+        file.SaveFile(image);
        
         while (running_) {
             float currentTime = GetTime();

@@ -4,12 +4,17 @@
 #include <fstream>
 
 #include "file.h"
+#include "image.h"
 
 namespace Chotra_RT {
 
     class FilePPM : public File {
+    public:
+        FilePPM(const char* filename);
+        void SaveFile(ImagePPM& image);
+
     private:
-       // void Append(const char* text);
+        
    
     };
 } // namespace Chotra_RT

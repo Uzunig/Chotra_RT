@@ -15,12 +15,15 @@ namespace Chotra_RT {
         File& operator=(const File& file) = delete;
         ~File();
 
+        void SaveFile();
+        void DeleteFile();
+
+        void Append(const char* text);
+
     private:
         const char* filename_;
         std::ofstream outf_;
-
-        int CreateFile();
-        int DeleteFile();
+                
     };
 
 } //namespace Chatra_RT

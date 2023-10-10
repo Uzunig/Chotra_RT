@@ -3,12 +3,30 @@
 #include <iostream>
 
 namespace Chotra_RT {
-    /*
-    void FilePPM::Append(const char* text) {
 
-        outf_.open(filename_, std::ios::app);
-        outf_ << text;
-        outf_.close();
-    }*/
+    FilePPM::FilePPM(const char* filename)
+        : File(filename) {
+
+    }
+
+    void FilePPM::SaveFile(ImagePPM& image) {
+        std::clog << "\nSaving:\n";
+
+        std::string s = "P3\n" + std::to_string(image.GetWidth()) + ' ' + std::to_string(image.GetHeight()) + "\n255\n";
+        Append(s.c_str());
+
+        s = "";
+        for (int i = 0; i < image.GetHeight(); ++i) {
+            std::clog << "\rScanlines remaining: " << (image.GetHeight() - i) << ' ' << std::flush;
+            for (int j = 0; j < image.GetWidth(); ++j) {
+                Color256 pixel = image.GetPixel(i, j);
+                s.append(std::to_string(pixel.r) + " " + std::to_string(pixel.g) + " " + std::to_string(pixel.b) + "  ");
+            }
+            s.append("\n");
+        }
+        Append(s.c_str());
+
+        std::clog << "\nDone\n";
+    }
 
 } // namespace Chotra_RT

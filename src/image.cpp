@@ -2,6 +2,11 @@
 
 namespace Chotra_RT {
 
+    Color256::Color256(unsigned char r, unsigned char g, unsigned char b) 
+        : r(r),  g(g), b(b){
+
+    }
+
     ImagePPM::ImagePPM(int image_width, int image_height)
         : image_width_(image_width), image_height_(image_height) {
 

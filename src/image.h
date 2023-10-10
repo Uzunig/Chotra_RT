@@ -7,13 +7,17 @@
 namespace Chotra_RT {
 
     class Color256 {
+    public:
+
+        Color256() = default;
+        Color256(unsigned char r, unsigned char g, unsigned char b);
+
         unsigned char r;
         unsigned char g;
         unsigned char b;
     };
 
-    class ImagePPM
-    {
+    class ImagePPM {
     public:
         ImagePPM(int image_width, int image_height);
         

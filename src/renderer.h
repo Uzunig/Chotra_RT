@@ -3,10 +3,12 @@
 
 namespace Chotra_RT {
 
+    class ImagePPM;
+
     class Renderer {
     public:
         Renderer();
-        void Render();
+        void Render(ImagePPM& resultImage);
     };
 
 } //namespace Chotra_RT
