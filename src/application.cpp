@@ -1,5 +1,6 @@
 #include "application.h"
 
+#include <iostream>
 #include <chrono>
 
 #include "resource_manager.h"
@@ -20,17 +21,30 @@ namespace Chotra_RT {
 
     void Application::Run() {
 
+        lastTime_ = GetTime();
+        
         ResourceManager::AddCamera();
 
-        ImagePPM image(1024, 1024);
+        ImagePPM image(3840, 2160);
         renderer_.Render(image);
+
+        float currentTime = GetTime();
+        float deltaTime = currentTime - lastTime_;
+        lastTime_ = currentTime;
+        std::clog << "\nTime spent on rendering: " << deltaTime << '\n' << std::flush;
+
         const char* filename = "image.ppm";
         FilePPM file(filename);
         file.SaveFile(image);
-       
+
+        currentTime = GetTime();
+        deltaTime = currentTime - lastTime_;
+        lastTime_ = currentTime;
+        std::clog << "\nTime spent on saving: " << deltaTime << '\n' << std::flush;
+               
         while (running_) {
-            float currentTime = GetTime();
-            float deltaTime = currentTime - lastTime_;
+            currentTime = GetTime();
+            deltaTime = currentTime - lastTime_;
             lastTime_ = currentTime;
 
             //OnUpdate();

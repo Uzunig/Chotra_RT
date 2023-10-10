@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "image.h"
+
 namespace Chotra_RT {
 
     FilePPM::FilePPM(const char* filename)
@@ -10,6 +12,7 @@ namespace Chotra_RT {
     }
 
     void FilePPM::SaveFile(ImagePPM& image) {
+        DeleteFile();
         std::clog << "\nSaving:\n";
 
         std::string s = "P3\n" + std::to_string(image.GetWidth()) + ' ' + std::to_string(image.GetHeight()) + "\n255\n";
@@ -22,7 +25,7 @@ namespace Chotra_RT {
                 Color256 pixel = image.GetPixel(i, j);
                 s.append(std::to_string(pixel.r) + " " + std::to_string(pixel.g) + " " + std::to_string(pixel.b) + "  ");
             }
-            s.append("\n");
+            //s.append("\n");
         }
         Append(s.c_str());
 

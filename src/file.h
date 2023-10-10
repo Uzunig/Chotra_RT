@@ -20,7 +20,7 @@ namespace Chotra_RT {
 
         void Append(const char* text);
 
-    private:
+    protected:
         const char* filename_;
         std::ofstream outf_;
                 

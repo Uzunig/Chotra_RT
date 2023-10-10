@@ -7,7 +7,7 @@ namespace Chotra_RT {
 
     }
 
-    ImagePPM::ImagePPM(int image_width, int image_height)
+    ImagePPM::ImagePPM(unsigned int image_width, unsigned int image_height)
         : image_width_(image_width), image_height_(image_height) {
 
     }
