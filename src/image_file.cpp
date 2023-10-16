@@ -12,23 +12,25 @@ namespace Chotra_RT {
     }
 
     void FilePPM::SaveFile(ImagePPM& image) {
-        DeleteFile();
         std::clog << "\nSaving:\n";
+        DeleteFile();
+        outf_ = std::ofstream(filename_);
 
-        std::string s = "P3\n" + std::to_string(image.GetWidth()) + ' ' + std::to_string(image.GetHeight()) + "\n255\n";
-        Append(s.c_str());
+        if (!outf_) {
+            std::cerr << "Uh oh, file could not be opened for writing!" << std::endl;
+        }
+        
+        outf_ << "P3\n" << image.GetWidth() << ' ' << image.GetHeight() << "\n255\n";
 
-        s = "";
         for (int i = 0; i < image.GetHeight(); ++i) {
             std::clog << "\rScanlines remaining: " << (image.GetHeight() - i) << ' ' << std::flush;
             for (int j = 0; j < image.GetWidth(); ++j) {
                 Color256 pixel = image.GetPixel(i, j);
-                s.append(std::to_string(pixel.r) + " " + std::to_string(pixel.g) + " " + std::to_string(pixel.b) + "  ");
+                outf_ << pixel.r << " " << pixel.g << " " << pixel.b << " ";
             }
-            //s.append("\n");
+            outf_<< "\n";
         }
-        Append(s.c_str());
-
+        outf_.close();
         std::clog << "\nDone\n";
     }
 

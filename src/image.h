@@ -12,9 +12,9 @@ namespace Chotra_RT {
         Color256() = default;
         Color256(unsigned char r, unsigned char g, unsigned char b);
 
-        unsigned char r;
-        unsigned char g;
-        unsigned char b;
+        uint8_t r;
+        uint8_t g;
+        uint8_t b;
     };
 
     class ImagePPM {
