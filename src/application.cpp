@@ -24,9 +24,11 @@ namespace Chotra_RT {
 
         lastTime_ = GetTime();
         
-        ImagePPM image(3840, 2160);
-        Camera camera(image);
-        camera.Take()
+        ImagePPM image(400, 400);
+        Camera camera = Camera();
+
+        renderer_.Render(image, camera);
+       
 
         float currentTime = GetTime();
         float deltaTime = currentTime - lastTime_;
