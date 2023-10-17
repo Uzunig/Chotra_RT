@@ -10,10 +10,10 @@ namespace Chotra_RT {
 
     class ResourceManager {
     public:
-        static size_t AddCamera();
+      
 
     private:
-        static std::vector<std::shared_ptr<Camera>> cameras_;
+       
 
     };
 } // namespace Chotra_RT

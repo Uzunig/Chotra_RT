@@ -6,6 +6,7 @@
 #include "resource_manager.h"
 #include "image_file.h"
 #include "image.h"
+#include "camera.h"
 
 
 namespace Chotra_RT {
@@ -23,10 +24,9 @@ namespace Chotra_RT {
 
         lastTime_ = GetTime();
         
-        ResourceManager::AddCamera();
-
         ImagePPM image(3840, 2160);
-        renderer_.Render(image);
+        Camera camera(image);
+        camera.Take()
 
         float currentTime = GetTime();
         float deltaTime = currentTime - lastTime_;

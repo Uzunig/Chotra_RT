@@ -26,7 +26,7 @@ namespace Chotra_RT {
             std::clog << "\rScanlines remaining: " << (image.GetHeight() - i) << ' ' << std::flush;
             for (int j = 0; j < image.GetWidth(); ++j) {
                 Color256 pixel = image.GetPixel(i, j);
-                outf_ << pixel.r << " " << pixel.g << " " << pixel.b << " ";
+                outf_ << std::to_string(pixel.r) << " " << std::to_string(pixel.g) << " " << std::to_string(pixel.b) << " ";
             }
             outf_<< "\n";
         }
