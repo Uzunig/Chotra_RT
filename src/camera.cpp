@@ -9,19 +9,19 @@ namespace Chotra_RT {
 
     }
 
-    float Camera::GetViewportWidth() const {
+    double Camera::GetViewportWidth() const {
         return viewport_width_;
     }
 
-    float Camera::GetViewportHeight() const {
+    double Camera::GetViewportHeight() const {
         return viewport_height_;
     }
 
-    float Camera::GetFocalLength() const {
+    double Camera::GetFocalLength() const {
         return focal_length_;
     }
 
-    glm::vec3 Camera::GetCameraCenter() const {
+    glm::dvec3 Camera::GetCameraCenter() const {
         return camera_center_;
     }
 }

@@ -8,16 +8,16 @@ namespace Chotra_RT {
     class Ray {
     public:
         Ray() = default;
-        Ray(const glm::vec3 origin, const glm::vec3 direction);
+        Ray(const glm::dvec3 origin, const glm::dvec3 direction);
 
-        glm::vec3 GetOrigin() const;
-        glm::vec3 GetDirection() const;
+        glm::dvec3 GetOrigin() const;
+        glm::dvec3 GetDirection() const;
 
-        glm::vec3 Func(float t) const;
+        glm::dvec3 Func(double t) const;
 
     private:
-        glm::vec3 origin_;
-        glm::vec3 direction_;
+        glm::dvec3 origin_;
+        glm::dvec3 direction_;
 
     };
 } // namespace Chotra_RT

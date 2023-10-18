@@ -2,11 +2,15 @@
 
 #include <iostream>
 #include <chrono>
+#include <memory>
+#include <glm/glm.hpp>
 
 #include "resource_manager.h"
 #include "image_file.h"
 #include "image.h"
 #include "camera.h"
+#include "hittable_list.h"
+#include "sphere.h"
 
 
 namespace Chotra_RT {
@@ -24,10 +28,14 @@ namespace Chotra_RT {
 
         lastTime_ = GetTime();
         
-        ImagePPM image(400, 400);
+        ImagePPM image(400, 400); //
         Camera camera = Camera();
 
-        renderer_.Render(image, camera);
+        HittableList world;
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0, 0, -1), 0.5));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0, -100.5, -1), 100));
+
+        renderer_.Render(image, camera, world);
        
 
         float currentTime = GetTime();

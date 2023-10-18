@@ -30,6 +30,15 @@ add_executable(Chotra_RT
 
 		src/file.h
 		src/file.cpp
+
+		src/hittable.h
+		src/hittable.cpp
+
+		src/hittable_list.h
+		src/hittable_list.cpp
+
+		src/sphere.h
+		src/sphere.cpp
 )
 
 include_directories(src)
