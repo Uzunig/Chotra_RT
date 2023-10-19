@@ -8,7 +8,7 @@ namespace Chotra_RT {
     class Sphere : public Hittable {
     public:
         Sphere(glm::dvec3 center, float radius);
-        bool Hit(const Ray& ray, double ray_tmin, double ray_tmax, HitData& hit_data) const override;
+        bool Hit(const Ray& ray, Interval interval_t, HitData& hit_data) const override;
       
 
     private:

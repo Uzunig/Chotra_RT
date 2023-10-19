@@ -16,6 +16,9 @@ add_executable(Chotra_RT
 		src/image_file.h
 		src/image_file.cpp
 
+		src/interval.h
+		src/interval.cpp
+
 		src/ray.h
 		src/ray.cpp	
 
@@ -24,6 +27,9 @@ add_executable(Chotra_RT
 
 		src/renderer.h
 		src/renderer.cpp	
+
+		src/ray_tracer.h
+		src/ray_tracer.cpp	
 
 		src/resource_manager.h
 		src/resource_manager.cpp

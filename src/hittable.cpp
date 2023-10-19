@@ -1,5 +1,7 @@
 #include "hittable.h"
 
+#include "interval.h"
+
 namespace Chotra_RT {
 
     void HitData::SetFaceNormal(const Ray& ray, const glm::dvec3& outward_normal) {

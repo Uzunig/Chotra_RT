@@ -15,10 +15,7 @@ namespace Chotra_RT {
     public:
         Renderer();
         void Render(ImagePPM& resultImage, const Camera& camera, HittableList& world);
-
-    private:
-        glm::dvec3 RayColor(Ray& ray, HittableList& world) const;
-
+        
     };
 
 } //namespace Chotra_RT

@@ -13,7 +13,7 @@ namespace Chotra_RT {
 
         std::vector<std::shared_ptr<Hittable>> objects;
         void Add(std::shared_ptr<Hittable> object);
-        bool Hit(const Ray& ray, double ray_tmin, double ray_tmax, HitData& rec) const override;
+        bool Hit(const Ray& ray, Interval interval_t, HitData& rec) const override;
 
     };
 

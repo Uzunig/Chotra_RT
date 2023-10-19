@@ -1,5 +1,7 @@
 #include "sphere.h"
 
+#include "interval.h"
+
 namespace Chotra_RT {
 
     Sphere::Sphere(glm::dvec3 center, float radius)
@@ -7,7 +9,7 @@ namespace Chotra_RT {
 
     }
 
-    bool Sphere::Hit(const Ray& ray, double ray_tmin, double ray_tmax, HitData& hit_data) const {
+    bool Sphere::Hit(const Ray& ray, Interval interval_t, HitData& hit_data) const {
 
         glm::dvec3 oc = ray.GetOrigin() - center_;
         double a = dot(ray.GetDirection(), ray.GetDirection());
@@ -20,9 +22,9 @@ namespace Chotra_RT {
         }
 
         double root = (-b - sqrt(discriminant)) / (2.0 * a);
-        if (root <= ray_tmin || ray_tmax <= root) {
+        if (!interval_t.Surrounds(root)) {
             root = (-b + sqrt(discriminant)) / (2.0 * a);
-            if (root <= ray_tmin || ray_tmax <= root) {
+            if (!interval_t.Surrounds(root)) {
                 return false;
             }
         }

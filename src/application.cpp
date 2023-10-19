@@ -32,7 +32,7 @@ namespace Chotra_RT {
         Camera camera = Camera();
 
         HittableList world;
-        world.Add(std::make_shared<Sphere>(glm::dvec3(0, 0, -1), 0.5));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, 0, -1), 0.5));
         world.Add(std::make_shared<Sphere>(glm::dvec3(0, -100.5, -1), 100));
 
         renderer_.Render(image, camera, world);

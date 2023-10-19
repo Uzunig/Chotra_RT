@@ -5,6 +5,8 @@
 
 namespace Chotra_RT {
 
+    class Interval;
+
     class HitData {
     public:
         glm::dvec3 p;
@@ -19,7 +21,7 @@ namespace Chotra_RT {
     public:
         virtual ~Hittable() = default;
 
-        virtual bool Hit(const Ray& ray, double ray_tmin, double ray_tmax, HitData& rec) const = 0;
+        virtual bool Hit(const Ray& ray, Interval interval_t, HitData& rec) const = 0;
 
     };
 
