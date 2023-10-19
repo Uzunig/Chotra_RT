@@ -26,6 +26,11 @@ namespace Chotra_RT {
 
     }
 
+    glm::dvec3 RayTracer::RandomVec() const {
+        glm::dvec3 random_vec = normalize(glm::dvec3(RandomSignedDouble(), RandomSignedDouble(), RandomSignedDouble()));
+                    return random_vec;
+    }
+
     glm::dvec3 RayTracer::RandomVecOnHemisphere(const glm::dvec3& normal) const {
         glm::dvec3 random_vec = normalize(glm::dvec3(RandomSignedDouble(), RandomSignedDouble(), RandomSignedDouble()));
         if (dot(random_vec, normal) > 0.0) // In the same hemisphere as the normal
@@ -42,7 +47,7 @@ namespace Chotra_RT {
         
         HitData hit_data;
         if (world.Hit(ray, Interval(0.001, infinity), hit_data)) {
-            glm::dvec3 random_direction = RandomVecOnHemisphere(hit_data.normal);
+            glm::dvec3 random_direction = hit_data.normal + RandomVec();
             return 0.5 * RayColor(Ray(hit_data.p, random_direction), depth - 1, world);
         }
 
