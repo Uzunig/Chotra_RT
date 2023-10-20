@@ -26,6 +26,10 @@ namespace Chotra_RT {
 
     }
 
+    glm::dvec3 RayTracer::GammaCorrection(glm::dvec3& linear_color) {
+        return sqrt(linear_color);
+    }
+
     glm::dvec3 RayTracer::RandomVec() const {
         glm::dvec3 random_vec = normalize(glm::dvec3(RandomSignedDouble(), RandomSignedDouble(), RandomSignedDouble()));
                     return random_vec;
@@ -47,7 +51,7 @@ namespace Chotra_RT {
         
         HitData hit_data;
         if (world.Hit(ray, Interval(0.001, infinity), hit_data)) {
-            glm::dvec3 random_direction = hit_data.normal + RandomVec();
+            glm::dvec3 random_direction = hit_data.normal + glm::normalize(glm::ballRand(1.0));
             return 0.5 * RayColor(Ray(hit_data.p, random_direction), depth - 1, world);
         }
 
@@ -75,6 +79,7 @@ namespace Chotra_RT {
                     color += RayColor(ray, max_ray_bounces, world);
                 }
                 color = color / static_cast<double>(samples_per_pixel_);
+                color = GammaCorrection(color);
                 Color256 pixel(color.r * 255, color.g * 255, color.b * 255);
                 resultImage.AddPixel(pixel);
             }

@@ -25,6 +25,12 @@ add_executable(Chotra_RT
 		src/camera.h
 		src/camera.cpp
 
+		src/lambertian.h
+		src/lambertian.cpp
+
+		src/material.h
+		src/material.cpp
+
 		src/renderer.h
 		src/renderer.cpp	
 

@@ -1,11 +1,12 @@
 #include "sphere.h"
 
 #include "interval.h"
+#include "material.h"
 
 namespace Chotra_RT {
 
-    Sphere::Sphere(glm::dvec3 center, float radius)
-        : center_(center), radius_(radius) {
+    Sphere::Sphere(glm::dvec3 center, float radius, std::shared_ptr<Material> material)
+        : center_(center), radius_(radius), material_(material) {
 
     }
 
@@ -33,6 +34,7 @@ namespace Chotra_RT {
         hit_data.p = ray.Func(hit_data.t);
         glm::dvec3 outward_normal = glm::normalize(hit_data.p - center_);
         hit_data.SetFaceNormal(ray, outward_normal);
+        hit_data.material = material_;
 
         return true;
     }

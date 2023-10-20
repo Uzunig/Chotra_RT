@@ -2,6 +2,7 @@
 #define RAY_TRACER_H
 
 #include <glm/glm.hpp>
+#include <glm/gtc/random.hpp>
 
 #include "ray.h"
 
@@ -24,6 +25,8 @@ namespace Chotra_RT {
         glm::dvec3 RayColor(Ray& ray, int depth, HittableList& world) const;
         glm::dvec3 RandomVec() const;
         glm::dvec3 RandomVecOnHemisphere(const glm::dvec3& normal) const;
+
+        glm::dvec3 GammaCorrection(glm::dvec3& linear_color);
 
         
     };

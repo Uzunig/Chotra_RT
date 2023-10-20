@@ -1,11 +1,14 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 
+#include <memory>
+
 #include "ray.h"
 
 namespace Chotra_RT {
 
     class Interval;
+    class Material;
 
     class HitData {
     public:
@@ -13,6 +16,7 @@ namespace Chotra_RT {
         glm::dvec3 normal;
         double t;
         bool front_face;
+        std::shared_ptr<Material> material;
 
         void SetFaceNormal(const Ray& ray, const glm::dvec3& outward_normal);
     };

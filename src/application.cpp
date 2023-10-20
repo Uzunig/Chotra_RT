@@ -11,6 +11,7 @@
 #include "camera.h"
 #include "hittable_list.h"
 #include "sphere.h"
+#include "lambertian.h"
 
 
 namespace Chotra_RT {
@@ -32,8 +33,9 @@ namespace Chotra_RT {
         Camera camera = Camera();
 
         HittableList world;
-        world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, 0, -1), 0.5));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(0, -100.5, -1), 100));
+        std::shared_ptr<Material> material = std::make_shared<Lambertian>(glm::dvec3(0.1, 0.1, 0.7));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, 0, -1), 0.5, material));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0, -100.5, -1), 100, material));
 
         renderer_.Render(image, camera, world);
        
