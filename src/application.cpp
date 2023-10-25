@@ -12,6 +12,7 @@
 #include "hittable_list.h"
 #include "sphere.h"
 #include "lambertian.h"
+#include "metal.h"
 
 
 namespace Chotra_RT {
@@ -33,9 +34,15 @@ namespace Chotra_RT {
         Camera camera = Camera();
 
         HittableList world;
-        std::shared_ptr<Material> material = std::make_shared<Lambertian>(glm::dvec3(0.1, 0.1, 0.7));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, 0, -1), 0.5, material));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(0, -100.5, -1), 100, material));
+        std::shared_ptr<Material> material_ground = std::make_shared<Lambertian>(glm::dvec3(0.8, 0.8, 0.0));
+        std::shared_ptr<Material> material_center = std::make_shared<Lambertian>(glm::dvec3(0.7, 0.3, 0.3));
+        std::shared_ptr<Material> material_left = std::make_shared<Metal>(glm::dvec3(0.8, 0.8, 0.8));
+        std::shared_ptr<Material> material_right = std::make_shared<Metal>(glm::dvec3(0.8, 0.6, 0.2));
+
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, -100.5, -1.0), 100.0, material_ground));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, 0.0, -1.0), 0.5, material_center));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(-1.0, 0.0, -1.0), 0.5, material_left));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(1.0, 0.0, -1.0), 0.5, material_right));
 
         renderer_.Render(image, camera, world);
        

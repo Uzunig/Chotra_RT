@@ -31,6 +31,9 @@ add_executable(Chotra_RT
 		src/material.h
 		src/material.cpp
 
+		src/metal.h
+		src/metal.cpp
+
 		src/renderer.h
 		src/renderer.cpp	
 

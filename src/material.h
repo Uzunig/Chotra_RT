@@ -14,8 +14,6 @@ namespace Chotra_RT {
         virtual ~Material() = default;
 
         virtual bool Scatter(const Ray& r_in, const HitData& hit_data, glm::dvec3& attenuation, Ray& scattered) const = 0;
-
-       
                 
     };
 

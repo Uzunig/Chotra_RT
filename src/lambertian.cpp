@@ -4,8 +4,13 @@
 
 namespace Chotra_RT {
 
-    bool Lambertian::Scatter(const Ray& r_in, const HitData& hit_data, glm::dvec3& attenuation, Ray& scattered) const {
-        auto scatter_direction = hit_data.normal + glm::normalize(glm::ballRand(1.0));
+    bool Lambertian::Scatter(const Ray& ray_in, const HitData& hit_data, glm::dvec3& attenuation, Ray& scattered) const {
+
+        glm::dvec3 scatter_direction = hit_data.normal + glm::normalize(glm::ballRand(1.0));
+        if (glm::length(scatter_direction) * glm::length(scatter_direction) < std::numeric_limits<double>::epsilon() * std::numeric_limits<double>::epsilon()) {
+            scatter_direction = hit_data.normal;
+        }
+
         scattered = Ray(hit_data.p, scatter_direction);
         attenuation = albedo_;
         return true;
