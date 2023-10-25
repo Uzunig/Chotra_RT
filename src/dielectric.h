@@ -1,5 +1,5 @@
-#ifndef LAMBERTIAN_H
-#define LAMBERTIAN_H
+#ifndef DIELECTRIC_H
+#define DIELECTRIC_H
 
 #include <glm/glm.hpp>
 #include <glm/gtc/random.hpp>
@@ -12,14 +12,17 @@ namespace Chotra_RT {
     class Ray;
     class HitData;
 
-    class Lambertian : public Material {
+    class Dielectric : public Material {
     public:
-        Lambertian(const glm::dvec3& albedo);
+        Dielectric(double refraction_index);
 
         bool Scatter(const Ray& r_in, const HitData& hit_data, glm::dvec3& attenuation, Ray& scattered) const override;
       
     private:
         glm::dvec3 albedo_;
+        double refraction_index_;
+
+        static double Reflectance(double cosine, double ref_idx);
 
     };
 

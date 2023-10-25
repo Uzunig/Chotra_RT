@@ -32,7 +32,7 @@ namespace Chotra_RT {
 
         hit_data.t = root;
         hit_data.p = ray.Func(hit_data.t);
-        glm::dvec3 outward_normal = glm::normalize(hit_data.p - center_);
+        glm::dvec3 outward_normal = (hit_data.p - center_) / radius_; // NOT NORMALIZE for creating spheres with negative radius 
         hit_data.SetFaceNormal(ray, outward_normal);
         hit_data.material = material_;
 

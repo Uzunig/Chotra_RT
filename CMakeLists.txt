@@ -24,15 +24,18 @@ add_executable(Chotra_RT
 
 		src/camera.h
 		src/camera.cpp
+				
+		src/material.h
+		src/material.cpp
 
 		src/lambertian.h
 		src/lambertian.cpp
 
-		src/material.h
-		src/material.cpp
-
 		src/metal.h
 		src/metal.cpp
+
+		src/dielectric.h
+		src/dielectric.cpp
 
 		src/renderer.h
 		src/renderer.cpp	

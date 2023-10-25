@@ -57,7 +57,7 @@ namespace Chotra_RT {
             if (hit_data.material->Scatter(ray, hit_data, attenuation, scattered)) {
                 return attenuation * RayColor(scattered, depth - 1, world);
             }
-            return glm::dvec3(0, 0, 0);
+            return glm::dvec3(0.0, 0.0, 0.0);
         }
         return glm::dvec3(0.5, 0.7, 1.0);
     }
