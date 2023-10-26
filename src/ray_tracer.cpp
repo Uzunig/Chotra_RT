@@ -62,9 +62,9 @@ namespace Chotra_RT {
             if (hit_data.material->Scatter(ray, hit_data, attenuation, scattered)) {
                 return attenuation * RayColor(scattered, depth - 1, world);
             }
-            return glm::dvec3(0.0, 0.0, 0.0);
+            return hit_data.material->Emitted();
         }
-        return glm::dvec3(0.5, 0.7, 1.0);
+        return glm::dvec3(0.0, 0.0, 0.0); // 0.5, 0.7, 1.0
     }
 
     void RayTracer::RayTracing(ImagePPM& resultImage, const Camera& camera, HittableList& world) {
@@ -88,7 +88,7 @@ namespace Chotra_RT {
                     color += RayColor(ray, max_ray_bounces, world);
                 }
                 color = color / static_cast<double>(samples_per_pixel_);
-                //color = ToneMapping(color);
+                color = ToneMapping(color);
                 color = GammaCorrection(color);
                 Color256 pixel(color.r * 255, color.g * 255, color.b * 255);
                 resultImage.AddPixel(pixel);

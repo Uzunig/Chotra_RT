@@ -14,6 +14,7 @@
 #include "lambertian.h"
 #include "metal.h"
 #include "dielectric.h"
+#include "diffuse_light.h"
 
 
 namespace Chotra_RT {
@@ -31,24 +32,24 @@ namespace Chotra_RT {
 
         lastTime_ = GetTime();
         
-        ImagePPM image(600, 600); //
+        ImagePPM image(400, 400); //
         Camera camera = Camera();
 
         HittableList world;
 
-        //std::shared_ptr<Material> material_light = std::make_shared<Lambertian>(glm::dvec3(10.0, 10.0, 10.0));
+        std::shared_ptr<Material> material_light = std::make_shared<DiffuseLight>(glm::dvec3(5.0, 5.0, 5.0));
 
         std::shared_ptr<Material> material_ground = std::make_shared<Lambertian>(glm::dvec3(0.2, 0.5, 0.2));
         std::shared_ptr<Material> material_center = std::make_shared<Lambertian>(glm::dvec3(0.1, 0.2, 0.5));
         std::shared_ptr<Material> material_left = std::make_shared<Dielectric>(1.5);
         std::shared_ptr<Material> material_right = std::make_shared<Metal>(glm::dvec3(0.8, 0.5, 0.2), 0.0);
 
-        //world.Add(std::make_shared<Sphere>(glm::dvec3(0.4, 1.0, 1.0), 0.1, material_light));
+        world.Add(std::make_shared<Sphere>(glm::dvec3(0.4, 1.5, 0.0), 0.4, material_light));
 
         world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, -100.5, -1.0), 100.0, material_ground));
         world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, 0.0, -1.0), 0.5, material_center));
         world.Add(std::make_shared<Sphere>(glm::dvec3(-0.4, -0.2, 1.0), 0.3, material_left));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(-0.4, -0.2, 1.0), -0.28, material_left));
+        //world.Add(std::make_shared<Sphere>(glm::dvec3(-0.4, -0.2, 1.0), -0.28, material_left));
         world.Add(std::make_shared<Sphere>(glm::dvec3(1.5, 0.5, -2.0), 1.0, material_right));
 
         renderer_.Render(image, camera, world);

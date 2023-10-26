@@ -37,6 +37,9 @@ add_executable(Chotra_RT
 		src/dielectric.h
 		src/dielectric.cpp
 
+		src/diffuse_light.h
+		src/diffuse_light.cpp
+
 		src/renderer.h
 		src/renderer.cpp	
 
