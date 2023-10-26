@@ -26,6 +26,7 @@ namespace Chotra_RT {
         glm::dvec3 RandomVec() const;
         glm::dvec3 RandomVecOnHemisphere(const glm::dvec3& normal) const;
 
+        glm::dvec3 ToneMapping(glm::dvec3& hdr_color);
         glm::dvec3 GammaCorrection(glm::dvec3& linear_color);
 
         

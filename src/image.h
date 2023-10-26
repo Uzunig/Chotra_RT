@@ -27,6 +27,8 @@ namespace Chotra_RT {
         unsigned int AddPixel(Color256 pixel);
         Color256 GetPixel(unsigned int row, unsigned int col);
 
+        Color256 TonalMapping(Color256 color);
+
     private:
         unsigned int image_width_;
         unsigned int image_height_;

@@ -28,7 +28,7 @@ namespace Chotra_RT {
         }
 
         scattered = Ray(hit_data.p, direction);
-        attenuation = glm::dvec3(1.0);
+        attenuation = glm::dvec3(1.0, 0.7, 0.9);
         return true;
     }
 

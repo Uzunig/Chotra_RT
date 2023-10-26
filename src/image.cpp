@@ -28,5 +28,6 @@ namespace Chotra_RT {
     Color256 ImagePPM::GetPixel(unsigned int row, unsigned int col) {
         return pixels_[row * image_width_ + col];
     }
+        
 
 } // namespace Chotra_RT

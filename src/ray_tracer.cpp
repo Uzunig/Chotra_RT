@@ -27,6 +27,11 @@ namespace Chotra_RT {
 
     }
 
+    glm::dvec3 RayTracer::ToneMapping(glm::dvec3& hdr_color) {
+        
+        return hdr_color / (hdr_color + glm::dvec3(1.0));
+    }
+
     glm::dvec3 RayTracer::GammaCorrection(glm::dvec3& linear_color) {
         return sqrt(linear_color);
     }
@@ -83,6 +88,7 @@ namespace Chotra_RT {
                     color += RayColor(ray, max_ray_bounces, world);
                 }
                 color = color / static_cast<double>(samples_per_pixel_);
+                //color = ToneMapping(color);
                 color = GammaCorrection(color);
                 Color256 pixel(color.r * 255, color.g * 255, color.b * 255);
                 resultImage.AddPixel(pixel);
