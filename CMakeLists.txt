@@ -60,6 +60,12 @@ add_executable(Chotra_RT
 
 		src/sphere.h
 		src/sphere.cpp
+
+		src/plane.h
+		src/plane.cpp
+
+		src/quad.h
+		src/quad.cpp
 )
 
 include_directories(src)

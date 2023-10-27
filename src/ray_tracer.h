@@ -19,8 +19,8 @@ namespace Chotra_RT {
         
 
     private:
-        int samples_per_pixel_ = 16;
-        int max_ray_bounces = 16;
+        int samples_per_pixel_ = 1024;
+        int max_ray_bounces = 24;
 
         glm::dvec3 RayColor(Ray& ray, int depth, HittableList& world) const;
         glm::dvec3 RandomVec() const;

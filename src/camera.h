@@ -24,7 +24,7 @@ namespace Chotra_RT {
         double viewport_height_ = 2.0f;
         double viewport_width_ = 2.0f;
         
-        glm::dvec3 camera_center_ = glm::dvec3(0.0f, 0.0f, 4.0f);
+        glm::dvec3 camera_center_ = glm::dvec3(0.0f, 0.0f, 15.0f);
 
         glm::dvec3 front_ = glm::dvec3(0.0f, 0.0f, -1.0f);
         glm::dvec3 up_ = glm::dvec3(0.0f, 1.0f, 0.0f);
