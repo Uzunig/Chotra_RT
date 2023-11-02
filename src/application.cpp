@@ -34,7 +34,7 @@ namespace Chotra_RT {
 
         lastTime_ = GetTime();
         
-        ImagePPM image(600, 600); 
+        ImagePPM image(400, 400); 
         Camera camera = Camera();
 
         HittableList world;
