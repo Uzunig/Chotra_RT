@@ -9,14 +9,14 @@
 
 <p>
     <a href="https://www.linkedin.com/posts/igor-uzun_dont-be-afraid-of-shadows-they-mean-the-activity-7123682508797272065-nwZf?utm_source=share&utm_medium=member_desktop" target="_blank">
-        <img src="logo/img2.jpeg" width="400"
-             height="400 alt="Logo">
+        <img src="logo/img2.jpeg" width="300"
+             height="300 alt="Logo">
     </a>
 </p>
 <p>
     <a href="https://www.linkedin.com/posts/igor-uzun_the-first-week-of-ray-tracing-in-one-weekend-activity-7123259863031328769-N6PX?utm_source=share&utm_medium=member_desktop" target="_blank">
-        <img src="logo/img1.jpeg" width="400"
-             height="400" alt="Logo">
+        <img src="logo/img1.jpeg" width="300"
+             height="300" alt="Logo">
     </a>
 </p>
 
