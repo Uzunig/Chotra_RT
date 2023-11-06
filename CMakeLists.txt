@@ -40,6 +40,9 @@ add_executable(Chotra_RT
 		src/diffuse_light.h
 		src/diffuse_light.cpp
 
+		src/scene.h
+		src/scene.cpp
+
 		src/renderer.h
 		src/renderer.cpp	
 
@@ -66,6 +69,9 @@ add_executable(Chotra_RT
 
 		src/quad.h
 		src/quad.cpp
+
+		src/window.h
+		src/window.cpp
 )
 
 include_directories(src)
