@@ -3,20 +3,12 @@
 #include <iostream>
 #include <chrono>
 #include <memory>
-#include <glm/glm.hpp>
 
-#include "resource_manager.h"
-#include "image_file.h"
-#include "image.h"
 #include "camera.h"
-#include "hittable_list.h"
-#include "sphere.h"
-#include "lambertian.h"
-#include "metal.h"
-#include "dielectric.h"
-#include "diffuse_light.h"
-#include "plane.h"
+
 #include "quad.h"
+
+#include "window.h"
 
 
 namespace Chotra_RT {
@@ -33,20 +25,18 @@ namespace Chotra_RT {
     }
 
     void Application::Run() {
-        
-        last_time_ = GetTime();
 
-        if (!GLFW_initialized) {
-            if (!glfwInit()) {
-                std::cout << "Failed to initialize GLFW" << std::endl;
-                return;
-            }
-        }
+        if (!InitGLFW()) return;
+
+        last_time_ = GetTime();
+        Window main_window = Window(600, 600);
+
         MainLoop();
+
+        TerminateGLFW();
     }
 
     void Application::MainLoop() {
-
         while (running_) {
             float current_time = GetTime();
             float delta_time = current_time - last_time_;
@@ -58,11 +48,32 @@ namespace Chotra_RT {
 
     void Application::OnUpdate() {
 
-        
+
     }
 
     float Application::GetTime() {
         return (float)glfwGetTime();
+    }
+
+    bool Application::InitGLFW() {
+        if (!GLFW_initialized) {
+            if (!glfwInit()) {
+                std::cout << "Failed to initialize GLFW" << std::endl;
+                return false;
+            }
+            glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+            glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        }
+        return true;
+    }
+
+    bool Application::TerminateGLFW() {
+        if (!GLFW_initialized) {
+            std::cout << "GLFW is not inizialised" << std::endl;
+            return false;
+        }
+        glfwTerminate();
+        return true;
     }
 
 } // namespace Chotra_RT

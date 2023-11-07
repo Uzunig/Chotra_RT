@@ -40,6 +40,9 @@ namespace Chotra_RT {
         Renderer renderer_;
 
         void MainLoop();
+
+        bool InitGLFW();
+        bool TerminateGLFW();
     };
 } // namespace Chotra_RT
 
