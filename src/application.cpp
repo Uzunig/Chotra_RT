@@ -3,26 +3,21 @@
 #include <iostream>
 #include <chrono>
 #include <memory>
-#include <glm/glm.hpp>
+#include <thread>
 
-#include "resource_manager.h"
-#include "image_file.h"
-#include "image.h"
 #include "camera.h"
-#include "hittable_list.h"
-#include "sphere.h"
-#include "lambertian.h"
-#include "metal.h"
-#include "dielectric.h"
-#include "diffuse_light.h"
-#include "plane.h"
 #include "quad.h"
-
+#include "window.h"
+#include "image.h"
+#include "hittable_list.h"
+#include "image_file.h"
 
 namespace Chotra_RT {
 
-    Application::Application(ApplicationSpecification applicationSpecification)
-        : applicationSpecification_(applicationSpecification) {
+    static bool GLFW_initialized = false;
+
+    Application::Application(ApplicationProperties application_properties)
+        : application_properties_(application_properties) {
 
     }
 
@@ -30,94 +25,72 @@ namespace Chotra_RT {
 
     }
 
-    void Application::Run() {
-
-        lastTime_ = GetTime();
-        
-        ImagePPM image(400, 400); 
+    void Application::RenderImage() {
+        ImagePPM image(400, 400);
         Camera camera = Camera();
-
         HittableList world;
 
-
-        // Materials
-        std::shared_ptr<Material> black = std::make_shared<Lambertian>(glm::dvec3(0.0, 0.0, 0.0));
-        std::shared_ptr<Material> white = std::make_shared<Lambertian>(glm::dvec3(1.0, 1.0, 1.0));
-        std::shared_ptr<Material> red     = std::make_shared<Lambertian>(glm::dvec3(1.0, 0.0, 0.0));
-        std::shared_ptr<Material> green   = std::make_shared<Lambertian>(glm::dvec3(0.0, 1.0, 0.0));
-        std::shared_ptr<Material> blue   = std::make_shared<Lambertian>(glm::dvec3(0.0, 0.0, 1.0));
-        std::shared_ptr<Material> gray = std::make_shared<Lambertian>(glm::dvec3(0.7, 0.7, 0.7));
-        
-        std::shared_ptr<Material> glass = std::make_shared<Dielectric>(1.5);
-        std::shared_ptr<Material> bronze = std::make_shared<Metal>(glm::dvec3(0.8, 0.5, 0.2), 0.0);
-
-        std::shared_ptr<Material> material_light = std::make_shared<DiffuseLight>(glm::dvec3(5.0, 5.0, 5.0));
-        
-        
-
-        // Quads
-        world.Add(std::make_shared<Quad>(glm::dvec3(-3, -3, 3), glm::dvec3(0, 0, -6), glm::dvec3(0, 6, 0),  red));
-        world.Add(std::make_shared<Quad>(glm::dvec3(-3, -3, -3), glm::dvec3(6, 0, 0),  glm::dvec3(0, 6, 0),  green));
-        world.Add(std::make_shared<Quad>(glm::dvec3(3, -3, -3),  glm::dvec3(0, 0, 6),  glm::dvec3(0, 6, 0),  blue));
-        world.Add(std::make_shared<Quad>(glm::dvec3(3, 3, -3),  glm::dvec3(0, 0, 6),  glm::dvec3(-6, 0, 0),  white));
-        world.Add(std::make_shared<Quad>(glm::dvec3(-3, -3, -3), glm::dvec3(0, 0, 6),  glm::dvec3(6, 0, 0), gray));
-
-
-        world.Add(std::make_shared<Quad>(glm::dvec3(-3, -3, -2), glm::dvec3(1, 0, 0), glm::dvec3(0, 1, 0), black));
-        world.Add(std::make_shared<Quad>(glm::dvec3(-2, -3, -2), glm::dvec3(0, 0, -1), glm::dvec3(0, 1, 0), black));
-        world.Add(std::make_shared<Quad>(glm::dvec3(-3, -2, -2), glm::dvec3(1, 0, 0), glm::dvec3(0, 0, -1), black));
-
-        
-        // Spheres
-        world.Add(std::make_shared<Sphere>(glm::dvec3(-2.2, -2.5, 2.5), 0.5, glass));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(2.1, -2.5, 2.0), 0.5, glass));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(0.4, -2.5, 1.5), 0.5, bronze));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(-1.2, -2.5, 1.5), 0.5, black));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, -2.5, 0.0), 0.5, blue));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(1.1, -2.5, 0.0), 0.5, red));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(-1.3, -2.5, -1.5), 0.5, bronze));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(1.5, -2.5, -2.0), 0.5, glass));
-        world.Add(std::make_shared<Sphere>(glm::dvec3(-2.5, -1.5, -2.5), 0.5, white));
-
-        // Lights
-        //world.Add(std::make_shared<Sphere>(glm::dvec3(0.0, 3.0, 0.0), 1.0, material_light));
-        world.Add(std::make_shared<Quad>(glm::dvec3(-1, -3, -3), glm::dvec3(2, 0, 0), glm::dvec3(0, 5, 0), material_light));
-        
-
-        // Rendering
         renderer_.Render(image, camera, world);
-       
-
-        float currentTime = GetTime();
-        float deltaTime = currentTime - lastTime_;
-        lastTime_ = currentTime;
-        std::clog << "\nTime spent on rendering: " << deltaTime << '\n' << std::flush;
-
-        const char* filename = "image.ppm";
-        FilePPM file(filename);
+        //renderer_.Render(image, camera, world);
+        FilePPM file("image.ppm");
         file.SaveFile(image);
+    }
 
-        currentTime = GetTime();
-        deltaTime = currentTime - lastTime_;
-        lastTime_ = currentTime;
-        std::clog << "\nTime spent on saving: " << deltaTime << '\n' << std::flush;
-               
+    void Application::Run() {
+        
+        if (!InitGLFW()) return;
+        last_time_ = GetTime();
+        Window main_window = Window(600, 600);
+        
+        std::thread th([&]() {RenderImage(); });
+
+        float current_time = GetTime();
+        float delta_time = current_time - last_time_;
+
+        MainLoop();
+
+        th.join();
+        TerminateGLFW();
+    }
+
+    void Application::MainLoop() {
         while (running_) {
-            currentTime = GetTime();
-            deltaTime = currentTime - lastTime_;
-            lastTime_ = currentTime;
+            float current_time = GetTime();
+            float delta_time = current_time - last_time_;
+            last_time_ = current_time;
 
-            //OnUpdate();
+            OnUpdate();
         }
     }
 
     void Application::OnUpdate() {
 
-        running_ = false;
+
     }
 
     float Application::GetTime() {
         return (float)glfwGetTime();
+    }
+
+    bool Application::InitGLFW() {
+        if (!GLFW_initialized) {
+            if (!glfwInit()) {
+                std::cout << "Failed to initialize GLFW" << std::endl;
+                return false;
+            }
+            glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+            glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        }
+        return true;
+    }
+
+    bool Application::TerminateGLFW() {
+        if (!GLFW_initialized) {
+            std::cout << "GLFW is not inizialised" << std::endl;
+            return false;
+        }
+        glfwTerminate();
+        return true;
     }
 
 } // namespace Chotra_RT

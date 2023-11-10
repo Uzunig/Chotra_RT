@@ -9,15 +9,15 @@
 namespace Chotra_RT {
 
 
-    struct ApplicationSpecification {
+    struct ApplicationProperties {
         std::string name = "Chotra_RT";
-        std::string workingDirectory;
+        std::string working_directory;
     };
 
     class Application {
 
     public:
-        Application(const ApplicationSpecification applicationSpecification);
+        Application(const ApplicationProperties application_properties);
         virtual ~Application();
 
         Application(const Application&) = delete;
@@ -32,12 +32,19 @@ namespace Chotra_RT {
 
 
     private:
-        ApplicationSpecification applicationSpecification_;
+        ApplicationProperties application_properties_;
 
         bool running_ = true;
-        float lastTime_ = 0.0f;
+        float last_time_ = 0.0f;
 
         Renderer renderer_;
+
+        void RenderImage();
+
+        void MainLoop();
+
+        bool InitGLFW();
+        bool TerminateGLFW();
     };
 } // namespace Chotra_RT
 

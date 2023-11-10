@@ -66,6 +66,9 @@ add_executable(Chotra_RT
 
 		src/quad.h
 		src/quad.cpp
+
+		src/window.h
+		src/window.cpp
 )
 
 include_directories(src)

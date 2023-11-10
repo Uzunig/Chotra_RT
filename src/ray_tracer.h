@@ -11,6 +11,7 @@ namespace Chotra_RT {
     class ImagePPM;
     class Camera;
     class HittableList;
+    class Color256;
 
     class RayTracer {
     public:
@@ -19,8 +20,15 @@ namespace Chotra_RT {
         
 
     private:
-        int samples_per_pixel_ = 16;
+        int samples_per_pixel_ = 100;
         int max_ray_bounces = 16;
+
+
+        glm::dvec3 delta_u_;
+        glm::dvec3 delta_v_;
+        glm::dvec3 pixel_00_center_;
+
+        void RenderLine(unsigned int i, ImagePPM& resultImage, const Camera& camera, HittableList& world);
 
         glm::dvec3 RayColor(Ray& ray, int depth, HittableList& world) const;
         glm::dvec3 RandomVec() const;
