@@ -24,7 +24,9 @@ namespace Chotra_RT {
         unsigned int GetWidth();
         unsigned int GetHeight();
 
-        unsigned int AddPixel(Color256 pixel);
+        std::vector<Color256> pixels_;
+
+        void SetPixel(unsigned int row, unsigned int col, Color256 pixel);
         Color256 GetPixel(unsigned int row, unsigned int col);
 
         Color256 TonalMapping(Color256 color);
@@ -32,9 +34,6 @@ namespace Chotra_RT {
     private:
         unsigned int image_width_;
         unsigned int image_height_;
-    public:
-        std::vector<Color256> pixels_;
-
     };
 
 } // namespace Chotra_RT
