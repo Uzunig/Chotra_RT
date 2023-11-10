@@ -15,7 +15,10 @@ namespace Chotra_RT {
     public:
         Renderer();
         void Render(ImagePPM& resultImage, const Camera& camera, HittableList& world);
+
+    private:
         
+
     };
 
 } //namespace Chotra_RT

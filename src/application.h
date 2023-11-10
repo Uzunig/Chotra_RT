@@ -39,6 +39,8 @@ namespace Chotra_RT {
 
         Renderer renderer_;
 
+        void RenderImage();
+
         void MainLoop();
 
         bool InitGLFW();

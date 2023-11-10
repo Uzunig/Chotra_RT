@@ -3,6 +3,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <thread>
+#include <mutex>
+
+
 
 #include "image.h"
 #include "image_file.h"
@@ -29,7 +32,7 @@ namespace Chotra_RT {
     }
 
     glm::dvec3 RayTracer::ToneMapping(glm::dvec3& hdr_color) {
-        
+
         return hdr_color / (hdr_color + glm::dvec3(1.0));
     }
 
@@ -68,8 +71,8 @@ namespace Chotra_RT {
         return glm::dvec3(0.0, 0.0, 0.0); // 0.5, 0.7, 1.0
     }
 
-    void RayTracer::RenderLine(const unsigned int i, ImagePPM& resultImage, const Camera& camera, HittableList& world) {
-        std::cout << "Thread id: " << std::this_thread::get_id() << " RenderLine() start" << std::endl;
+    void RayTracer::RenderLine(const unsigned int i,ImagePPM& resultImage, const Camera& camera, HittableList& world) {
+      
         for (int j = 0; j < resultImage.GetWidth(); ++j) {
             glm::dvec3 color(0.0);
             for (unsigned int sample = 0; sample < samples_per_pixel_; ++sample) {
@@ -97,13 +100,18 @@ namespace Chotra_RT {
         pixel_00_center_ = glm::dvec3(-camera.GetViewportWidth() / 2, camera.GetViewportHeight() / 2, -camera.GetFocalLength()) + 0.5 * (delta_u_ + delta_v_);
 
         std::vector <std::thread> th_vec;
+        unsigned int thread_count = 0;
+
         for (unsigned int i = 0; i < resultImage.GetHeight(); ++i) {
-            //std::clog << "\rScanlines remaining: " << (resultImage.GetHeight() - i) << ' ' << std::flush;
-            std::thread th([&]() {RenderLine(i, resultImage, camera, world);});
-            th_vec.push_back(th);
-        }
-        for (unsigned int i = 0; i < th_vec.size(); ++i) {
-            th_vec.at(i).join();
+            std::clog << "\rScanlines remaining: " << (resultImage.GetHeight() - i) << ' ' << std::flush;
+            th_vec.push_back(std::thread([&](const int x) {RenderLine(x, resultImage, camera, world); }, i));
+            ++thread_count;
+            if (thread_count == 100 || i == resultImage.GetHeight() - 1) {
+                for (unsigned int j = th_vec.size() - thread_count; j < th_vec.size(); ++j) {
+                    th_vec[j].join();
+                }
+                thread_count = 0;
+            }
         }
     }
 } // namespace Chotra_RT
