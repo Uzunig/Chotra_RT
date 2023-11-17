@@ -20,7 +20,7 @@ namespace Chotra_RT {
         
 
     private:
-        int samples_per_pixel_ = 100;
+        int samples_per_pixel_ = 10;
         int max_ray_bounces = 16;
 
 

@@ -20,10 +20,10 @@ namespace Chotra_RT {
             std::cerr << "Uh oh, file could not be opened for writing!" << std::endl;
         }
         
-        outf_ << "P3\n" << image.GetWidth() << ' ' << image.GetHeight() << "\n255\n";
+        outf_ << "P3\n" << image.GetWidth() << ' ' << image.GetHight() << "\n255\n";
 
-        for (int i = 0; i < image.GetHeight(); ++i) {
-            std::clog << "\rScanlines remaining: " << (image.GetHeight() - i) << ' ' << std::flush;
+        for (int i = 0; i < image.GetHight(); ++i) {
+            std::clog << "\rScanlines remaining: " << (image.GetHight() - i) << ' ' << std::flush;
             for (int j = 0; j < image.GetWidth(); ++j) {
                 Color256 pixel = image.GetPixel(i, j);
                 outf_ << std::to_string(pixel.r) << " " << std::to_string(pixel.g) << " " << std::to_string(pixel.b) << " ";

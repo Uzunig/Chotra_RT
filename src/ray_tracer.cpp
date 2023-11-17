@@ -95,18 +95,18 @@ namespace Chotra_RT {
         std::clog << "\nRendering:\n";
 
         delta_u_ = glm::dvec3(camera.GetViewportWidth() / resultImage.GetWidth(), 0.0f, 0.0f);
-        delta_v_ = glm::dvec3(0.0f, -camera.GetViewportHeight() / resultImage.GetHeight(), 0.0f);
+        delta_v_ = glm::dvec3(0.0f, -camera.GetViewportHeight() / resultImage.GetHight(), 0.0f);
 
         pixel_00_center_ = glm::dvec3(-camera.GetViewportWidth() / 2, camera.GetViewportHeight() / 2, -camera.GetFocalLength()) + 0.5 * (delta_u_ + delta_v_);
 
         std::vector <std::thread> th_vec;
         unsigned int thread_count = 0;
 
-        for (unsigned int i = 0; i < resultImage.GetHeight(); ++i) {
-            std::clog << "\rScanlines remaining: " << (resultImage.GetHeight() - i) << ' ' << std::flush;
+        for (unsigned int i = 0; i < resultImage.GetHight(); ++i) {
+            std::clog << "\rScanlines remaining: " << (resultImage.GetHight() - i) << ' ' << std::flush;
             th_vec.push_back(std::thread([&](const int x) {RenderLine(x, resultImage, camera, world); }, i));
             ++thread_count;
-            if (thread_count == 100 || i == resultImage.GetHeight() - 1) {
+            if (thread_count == 100 || i == resultImage.GetHight() - 1) {
                 for (unsigned int j = th_vec.size() - thread_count; j < th_vec.size(); ++j) {
                     th_vec[j].join();
                 }

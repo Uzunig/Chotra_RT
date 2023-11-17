@@ -7,21 +7,21 @@ namespace Chotra_RT {
         
     }
 
-    ImagePPM::ImagePPM(unsigned int image_width, unsigned int image_height)
-        : image_width_(image_width), image_height_(image_height) {
-        pixels_.resize(image_width_ * image_height_);
+    ImagePPM::ImagePPM(unsigned int image_width, unsigned int image_hight)
+        : image_width_(image_width), image_hight_(image_hight) {
+        pixels_.resize(image_width_ * image_hight_);
     }
 
     unsigned int ImagePPM::GetWidth() {
         return image_width_;
     }
 
-    unsigned int ImagePPM::GetHeight() {
-        return image_height_;
+    unsigned int ImagePPM::GetHight() {
+        return image_hight_;
     }
 
     void ImagePPM::SetPixel(unsigned int row, unsigned int col, Color256 pixel) {
-        pixels_[row * image_height_ + col] = pixel;
+        pixels_[row * image_hight_ + col] = pixel;
     }
 
     Color256 ImagePPM::GetPixel(unsigned int row, unsigned int col) {

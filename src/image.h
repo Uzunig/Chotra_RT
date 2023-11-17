@@ -19,21 +19,19 @@ namespace Chotra_RT {
 
     class ImagePPM {
     public:
-        ImagePPM(unsigned int image_width, unsigned int image_height);
+        ImagePPM(unsigned int image_width, unsigned int image_hight);
         
         unsigned int GetWidth();
-        unsigned int GetHeight();
+        unsigned int GetHight();
 
         std::vector<Color256> pixels_;
 
         void SetPixel(unsigned int row, unsigned int col, Color256 pixel);
         Color256 GetPixel(unsigned int row, unsigned int col);
 
-        Color256 TonalMapping(Color256 color);
-
     private:
         unsigned int image_width_;
-        unsigned int image_height_;
+        unsigned int image_hight_;
     };
 
 } // namespace Chotra_RT
