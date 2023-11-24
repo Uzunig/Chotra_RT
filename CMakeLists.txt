@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 17)
 
 project(Chotra_RT)
+find_package(Vulkan REQUIRED FATAL_ERROR)
 
 add_executable(Chotra_RT 
 		src/main.cpp
@@ -69,6 +70,9 @@ add_executable(Chotra_RT
 
 		src/window.h
 		src/window.cpp
+
+		src/vulkan_context.h
+		src/vulkan_context.cpp
 )
 
 include_directories(src)
@@ -77,4 +81,4 @@ include_directories(external/glfw/include)
 
 add_subdirectory(external/glfw)
 
-target_link_libraries(Chotra_RT glfw)
+target_link_libraries(Chotra_RT glfw Vulkan::Vulkan)
