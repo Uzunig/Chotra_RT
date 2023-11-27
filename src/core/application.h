@@ -4,6 +4,8 @@
 #include <string>
 
 #include "api/glfw_context.h"
+#include "api/vulkan_context.h"
+
 #include "renderer.h"
 #include "utils/timer.h"
 
@@ -33,6 +35,8 @@ namespace Chotra_RT {
         bool running_ = true;
 
         GLFWContext& glfw_context_;
+        VulkanContext& vulkan_context_;
+
         Timer timer_;
         Renderer renderer_;
 

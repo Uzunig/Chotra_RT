@@ -2,7 +2,6 @@
 #define WINDOW_H
 
 #include <GLFW/glfw3.h>
-#include <vulkan/vulkan.h>
 
 namespace Chotra_RT {
 

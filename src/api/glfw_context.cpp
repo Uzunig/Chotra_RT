@@ -26,8 +26,6 @@ namespace Chotra_RT {
                 std::cerr << "Failed to initialize GLFW" << std::endl;
                 return false;
             }
-            glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-            glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
             GLFW_initialized = true;
         }
         return true;

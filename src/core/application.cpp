@@ -9,7 +9,7 @@
 
 namespace Chotra_RT {
 
-    Application::Application() : glfw_context_(GLFWContext::GetInstance()){
+    Application::Application() : glfw_context_(GLFWContext::GetInstance()), vulkan_context_(VulkanContext::GetInstance()){
 
     }
 
