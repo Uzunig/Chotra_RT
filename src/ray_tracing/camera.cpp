@@ -1,6 +1,6 @@
 #include "camera.h"
 
-#include "image.h"
+#include "utils/image.h"
 
 namespace Chotra_RT {
 

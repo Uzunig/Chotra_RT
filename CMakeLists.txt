@@ -6,78 +6,88 @@ project(Chotra_RT)
 find_package(Vulkan REQUIRED FATAL_ERROR)
 
 add_executable(Chotra_RT 
-		src/main.cpp
-
-		src/application.h
-		src/application.cpp
-
-		src/image.h
-		src/image.cpp
-		
-		src/image_file.h
-		src/image_file.cpp
-
-		src/interval.h
-		src/interval.cpp
-
-		src/ray.h
-		src/ray.cpp	
-
-		src/camera.h
-		src/camera.cpp
-				
-		src/material.h
-		src/material.cpp
-
-		src/lambertian.h
-		src/lambertian.cpp
-
-		src/metal.h
-		src/metal.cpp
-
-		src/dielectric.h
-		src/dielectric.cpp
-
-		src/diffuse_light.h
-		src/diffuse_light.cpp
-
-		src/renderer.h
-		src/renderer.cpp	
-
-		src/ray_tracer.h
-		src/ray_tracer.cpp	
-
-		src/resource_manager.h
-		src/resource_manager.cpp
-
-		src/file.h
-		src/file.cpp
-
-		src/hittable.h
-		src/hittable.cpp
-
-		src/hittable_list.h
-		src/hittable_list.cpp
-
-		src/sphere.h
-		src/sphere.cpp
-
-		src/plane.h
-		src/plane.cpp
-
-		src/quad.h
-		src/quad.cpp
-
-		src/window.h
-		src/window.cpp
-
-		src/vulkan_context.h
-		src/vulkan_context.cpp
+    src/main.cpp
 )
 
-include_directories(src)
-include_directories(external/glm)
-include_directories(external/glfw/include)
+target_sources(Chotra_RT PRIVATE
+    src/api/glfw_context.h
+    src/api/glfw_context.cpp
+
+    src/api/vulkan_context.h
+    src/api/vulkan_context.cpp
+
+    src/core/application.h
+    src/core/application.cpp
+
+    src/core/renderer.h
+    src/core/renderer.cpp
+
+    src/gui/window.h
+    src/gui/window.cpp
+
+    src/materials/material.h
+    src/materials/material.cpp
+
+    src/materials/lambertian.h
+    src/materials/lambertian.cpp
+
+    src/materials/metal.h
+    src/materials/metal.cpp
+
+    src/materials/dielectric.h
+    src/materials/dielectric.cpp
+
+    src/materials/diffuse_light.h
+    src/materials/diffuse_light.cpp
+
+    src/ray_tracing/ray_tracer.h
+    src/ray_tracing/ray_tracer.cpp
+
+    src/ray_tracing/ray.h
+    src/ray_tracing/ray.cpp
+
+    src/ray_tracing/camera.h
+    src/ray_tracing/camera.cpp
+
+    src/ray_tracing/hittable.h
+    src/ray_tracing/hittable.cpp
+
+    src/ray_tracing/hittable_list.h
+    src/ray_tracing/hittable_list.cpp
+
+    src/resource_manager/resource_manager.h
+    src/resource_manager/resource_manager.cpp
+
+    src/resource_manager/sphere.h
+    src/resource_manager/sphere.cpp
+
+    src/resource_manager/plane.h
+    src/resource_manager/plane.cpp
+
+    src/resource_manager/quad.h
+    src/resource_manager/quad.cpp
+
+    src/utils/image.h
+    src/utils/image.cpp
+
+    src/utils/image_file.h
+    src/utils/image_file.cpp
+
+    src/utils/interval.h
+    src/utils/interval.cpp
+
+    src/utils/file.h
+    src/utils/file.cpp
+
+    src/utils/timer.h
+    src/utils/timer.cpp
+)
+
+target_include_directories(Chotra_RT PRIVATE
+    src
+    external/glm
+    external/glfw/include
+)
 
 add_subdirectory(external/glfw)
 

@@ -1,7 +1,7 @@
 #include "sphere.h"
 
-#include "interval.h"
-#include "material.h"
+#include "utils/interval.h"
+#include "materials/material.h"
 
 namespace Chotra_RT {
 

@@ -1,6 +1,6 @@
 #include "resource_manager.h"
 
-#include "camera.h"
+#include "ray_tracing/camera.h"
 
 namespace Chotra_RT {
 

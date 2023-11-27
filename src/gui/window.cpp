@@ -3,7 +3,7 @@
 
 namespace Chotra_RT {
 
-    Window::Window(size_t width, size_t hight)
+    Window::Window(int width, int hight)
         : width_(width), hight_(hight) {
         glfw_window_ = glfwCreateWindow(width_, hight_, "Chotra_RT", nullptr, nullptr);
     }

@@ -1,13 +1,13 @@
 #include "hittable_list.h"
 
-#include "interval.h"
+#include "utils/interval.h"
 
-#include "lambertian.h"
-#include "metal.h"
-#include "dielectric.h"
-#include "diffuse_light.h"
-#include "quad.h"
-#include "sphere.h"
+#include "materials/lambertian.h"
+#include "materials/metal.h"
+#include "materials/dielectric.h"
+#include "materials/diffuse_light.h"
+#include "resource_manager/quad.h"
+#include "resource_manager/sphere.h"
 
 namespace Chotra_RT {
 

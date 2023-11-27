@@ -1,6 +1,6 @@
 #include "dielectric.h"
 
-#include "hittable.h"
+#include "ray_tracing/hittable.h"
 
 namespace Chotra_RT {
 

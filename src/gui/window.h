@@ -9,15 +9,12 @@ namespace Chotra_RT {
     class Window {
 
     public:
-        Window(size_t width, size_t hight);
+        Window(int width, int hight);
         virtual ~Window();
 
-
-      
-
     private:
-        size_t width_;
-        size_t hight_;
+        int width_;
+        int hight_;
         GLFWwindow* glfw_window_ = nullptr;
         
     };

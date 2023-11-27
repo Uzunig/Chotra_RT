@@ -2,23 +2,17 @@
 #define APPLICATION_H
 
 #include <string>
-#include <GLFW/glfw3.h>
 
+#include "api/glfw_context.h"
 #include "renderer.h"
+#include "utils/timer.h"
 
 namespace Chotra_RT {
 
-
-    struct ApplicationProperties {
-        std::string name = "Chotra_RT";
-        std::string working_directory;
-    };
-
     class Application {
-
     public:
-        Application(const ApplicationProperties application_properties);
-        virtual ~Application();
+        Application();
+        virtual ~Application() = default;
 
         Application(const Application&) = delete;
         Application(Application&&) = delete;
@@ -27,26 +21,25 @@ namespace Chotra_RT {
         Application& operator=(Application&&) = delete;
 
         void Run();
-        void OnUpdate();
-        float GetTime();
-
+        void OnUpdate(float delta_time);
+        
 
     private:
-        ApplicationProperties application_properties_;
+        struct ApplicationProperties {
+            std::string name = "Chotra_RT";
+            std::string working_directory;
+        } application_properties_;
 
         bool running_ = true;
-        float last_time_ = 0.0f;
 
+        GLFWContext& glfw_context_;
+        Timer timer_;
         Renderer renderer_;
 
-        void RenderImage();
-
         void MainLoop();
-
-        bool InitGLFW();
-        bool TerminateGLFW();
+          
     };
 } // namespace Chotra_RT
 
-#endif;
+#endif
 

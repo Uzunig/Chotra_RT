@@ -3,7 +3,6 @@
 
 #include <glm/glm.hpp>
 
-#include "ray.h"
 
 namespace Chotra_RT {
 
@@ -15,6 +14,7 @@ namespace Chotra_RT {
     public:
         Renderer();
         void Render(ImagePPM& resultImage, const Camera& camera, HittableList& world);
+        void RenderToImageFile();
 
     private:
         

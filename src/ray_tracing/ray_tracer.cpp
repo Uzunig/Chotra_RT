@@ -7,14 +7,14 @@
 
 
 
-#include "image.h"
-#include "image_file.h"
-#include "camera.h"
-#include "ray.h"
-#include "sphere.h"
-#include "hittable_list.h"
-#include "interval.h"
-#include "material.h"
+#include "utils/image.h"
+#include "utils/image_file.h"
+#include "ray_tracing/camera.h"
+#include "ray_tracing/ray.h"
+#include "resource_manager/sphere.h"
+#include "ray_tracing/hittable_list.h"
+#include "utils/interval.h"
+#include "materials/material.h"
 
 namespace Chotra_RT {
 

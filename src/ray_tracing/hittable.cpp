@@ -1,6 +1,6 @@
 #include "hittable.h"
 
-#include "interval.h"
+#include "utils/interval.h"
 
 namespace Chotra_RT {
 
