@@ -11,11 +11,11 @@ namespace Chotra_RT {
         Window(int width, int hight);
         virtual ~Window();
 
+        GLFWwindow* glfw_window_ = nullptr;
     private:
         int width_;
         int hight_;
-        GLFWwindow* glfw_window_ = nullptr;
-        
+
     };
 } // namespace Chotra_RT
 

@@ -8,6 +8,7 @@
 
 #include "renderer.h"
 #include "utils/timer.h"
+#include "gui/window.h"
 
 namespace Chotra_RT {
 
@@ -28,6 +29,8 @@ namespace Chotra_RT {
 
     private:
         struct ApplicationProperties {
+            int width = 600;
+            int hight = 600;
             std::string name = "Chotra_RT";
             std::string working_directory;
         } application_properties_;
@@ -35,6 +38,7 @@ namespace Chotra_RT {
         bool running_ = true;
 
         GLFWContext& glfw_context_;
+        Window main_window_;
         VulkanContext& vulkan_context_;
 
         Timer timer_;
