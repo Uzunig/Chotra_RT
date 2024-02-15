@@ -16,14 +16,14 @@ target_sources(Chotra_RT PRIVATE
     src/api/vulkan_context.h
     src/api/vulkan_context.cpp
 
-    src/api/vulkan_vertex.h
-    src/api/vulkan_vertex.cpp
-
     src/core/application.h
     src/core/application.cpp
 
     src/core/renderer.h
     src/core/renderer.cpp
+
+    src/core/vertex.h
+    src/core/vertex.cpp
 
     src/gui/window.h
     src/gui/window.cpp

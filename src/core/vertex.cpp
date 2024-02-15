@@ -1,4 +1,4 @@
-#include "vulkan_vertex.h"
+#include "vertex.h"
 
 namespace Chotra_RT {
 

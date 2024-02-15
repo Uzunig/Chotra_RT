@@ -4,9 +4,16 @@
 #include <algorithm>
 #include <set>
 #include <fstream>
+#include <array>
 
 namespace Chotra_RT {
 
+
+    const std::vector<Vertex> vertices = {
+            {{0.0f, -0.5f}, {1.0f, 1.0f, 1.0f}},
+            {{0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}},
+            {{-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}}
+    };
 
     const int MAX_FRAMES_IN_FLIGHT = 2;
 
@@ -71,7 +78,7 @@ namespace Chotra_RT {
         CreateGraphicsPipeline();
         CreateFramebuffers();
         CreateCommandPool();
-        CreateVertexBuffer();
+        CreateVertexBuffer(vertices);
         CreateCommandBuffers();
         CreateSyncObjects();
     }
@@ -163,7 +170,7 @@ namespace Chotra_RT {
         if (enableValidationLayers) {
             createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
             createInfo.ppEnabledLayerNames = validationLayers.data();
-            
+
             PopulateDebugMessengerCreateInfo(debugCreateInfo);
             createInfo.pNext = (VkDebugUtilsMessengerCreateInfoEXT*)&debugCreateInfo;
         }
@@ -414,8 +421,8 @@ namespace Chotra_RT {
         VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
         vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
 
-        auto bindingDescription = Vertex::getBindingDescription();
-        auto attributeDescriptions = Vertex::getAttributeDescriptions();
+        auto bindingDescription = GetBindingDescription();
+        auto attributeDescriptions = GetAttributeDescriptions();
 
         vertexInputInfo.vertexBindingDescriptionCount = 1;
         vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
@@ -540,7 +547,7 @@ namespace Chotra_RT {
         }
     }
 
-    void VulkanContext::CreateVertexBuffer() {
+    void VulkanContext::CreateVertexBuffer(const std::vector<Vertex> vertices) {
 
         VkBufferCreateInfo bufferInfo{};
         bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
@@ -584,6 +591,31 @@ namespace Chotra_RT {
         }
 
         throw std::runtime_error("failed to find suitable memory type!");
+    }
+
+    VkVertexInputBindingDescription VulkanContext::GetBindingDescription() {
+        VkVertexInputBindingDescription bindingDescription{};
+        bindingDescription.binding = 0;
+        bindingDescription.stride = sizeof(Vertex);
+        bindingDescription.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+
+        return bindingDescription;
+    }
+
+    std::array<VkVertexInputAttributeDescription, 2> VulkanContext::GetAttributeDescriptions() {
+        std::array<VkVertexInputAttributeDescription, 2> attributeDescriptions{};
+
+        attributeDescriptions[0].binding = 0;
+        attributeDescriptions[0].location = 0;
+        attributeDescriptions[0].format = VK_FORMAT_R32G32_SFLOAT;
+        attributeDescriptions[0].offset = offsetof(Vertex, pos);
+
+        attributeDescriptions[1].binding = 0;
+        attributeDescriptions[1].location = 1;
+        attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+        attributeDescriptions[1].offset = offsetof(Vertex, color);
+
+        return attributeDescriptions;
     }
 
     void VulkanContext::CreateCommandBuffers() {
@@ -916,7 +948,7 @@ namespace Chotra_RT {
 
     std::vector<char> VulkanContext::ReadFile(const std::string& filename) {
         std::ifstream file(filename, std::ios::ate | std::ios::binary);
-        if (!file.is_open()) { 
+        if (!file.is_open()) {
             throw std::runtime_error("failed to open file!");
         }
 

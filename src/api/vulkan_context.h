@@ -9,7 +9,7 @@
 #include <optional>
 #include <string>
 
-#include "vulkan_vertex.h"
+#include "core/vertex.h"
 
 namespace Chotra_RT {
 
@@ -64,8 +64,12 @@ namespace Chotra_RT {
         void CreateGraphicsPipeline();
         void CreateFramebuffers();
         void CreateCommandPool();
-        void CreateVertexBuffer();
+
+        void CreateVertexBuffer(const std::vector<Vertex> vertices);
         uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+        VkVertexInputBindingDescription GetBindingDescription();
+        std::array<VkVertexInputAttributeDescription, 2> GetAttributeDescriptions();
+
         void CreateCommandBuffers();
         void RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
         void CreateSyncObjects();
