@@ -9,6 +9,8 @@
 #include <optional>
 #include <string>
 
+#include "vulkan_vertex.h"
+
 namespace Chotra_RT {
 
     struct QueueFamilyIndices {
@@ -62,6 +64,8 @@ namespace Chotra_RT {
         void CreateGraphicsPipeline();
         void CreateFramebuffers();
         void CreateCommandPool();
+        void CreateVertexBuffer();
+        uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
         void CreateCommandBuffers();
         void RecordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
         void CreateSyncObjects();
@@ -106,6 +110,10 @@ namespace Chotra_RT {
         VkPipeline graphicsPipeline;
 
         VkCommandPool commandPool;
+
+        VkBuffer vertexBuffer;
+        VkDeviceMemory vertexBufferMemory;
+
         std::vector<VkCommandBuffer> commandBuffers;
 
         std::vector<VkSemaphore> imageAvailableSemaphores;

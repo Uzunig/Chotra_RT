@@ -16,6 +16,9 @@ target_sources(Chotra_RT PRIVATE
     src/api/vulkan_context.h
     src/api/vulkan_context.cpp
 
+    src/api/vulkan_vertex.h
+    src/api/vulkan_vertex.cpp
+
     src/core/application.h
     src/core/application.cpp
 
