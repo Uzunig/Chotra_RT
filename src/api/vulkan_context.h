@@ -65,7 +65,7 @@ namespace Chotra_RT {
         void CreateFramebuffers();
         void CreateCommandPool();
 
-        void CreateVertexBuffer(const std::vector<Vertex> vertices);
+        void CreateVertexBuffer();
         uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
         VkVertexInputBindingDescription GetBindingDescription();
         std::array<VkVertexInputAttributeDescription, 2> GetAttributeDescriptions();

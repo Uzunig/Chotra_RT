@@ -10,9 +10,12 @@ namespace Chotra_RT {
 
 
     const std::vector<Vertex> vertices = {
-            {{0.0f, -0.5f}, {1.0f, 1.0f, 1.0f}},
-            {{0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}},
-            {{-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}}
+        {{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+        {{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
+        {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
+        {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
+        {{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}},
+        {{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}}
     };
 
     const int MAX_FRAMES_IN_FLIGHT = 2;
@@ -78,7 +81,7 @@ namespace Chotra_RT {
         CreateGraphicsPipeline();
         CreateFramebuffers();
         CreateCommandPool();
-        CreateVertexBuffer(vertices);
+        CreateVertexBuffer();
         CreateCommandBuffers();
         CreateSyncObjects();
     }
@@ -547,7 +550,7 @@ namespace Chotra_RT {
         }
     }
 
-    void VulkanContext::CreateVertexBuffer(const std::vector<Vertex> vertices) {
+    void VulkanContext::CreateVertexBuffer() {
 
         VkBufferCreateInfo bufferInfo{};
         bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
